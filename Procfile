@@ -1,0 +1,1 @@
+web: gunicorn  -w 4 "fellowship_recognizer:create_app()"
