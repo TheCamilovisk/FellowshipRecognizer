@@ -4,4 +4,4 @@ def test_upload_sample(cli):
     imgname = "thefellowship.jpg"
     data = {"image": (open(join("samples", imgname), "rb"), imgname)}
     response = cli.post("/upload", data=data)
-    assert response.status_code == 400
+    assert response.status_code == 201
