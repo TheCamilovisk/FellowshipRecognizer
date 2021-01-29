@@ -28,3 +28,11 @@ def test_upload_txt_ext(cli):
     assert response.status_code == 400
     assert "error" in response.json.keys()
     assert "Invalid image" == response.json["error"]
+
+
+def test_upload_non_img_file(cli):
+    data = {"image": (io.BytesIO(b"Some text"), "noise.jpg")}
+    response = cli.post("/upload", data=data)
+    assert response.status_code == 400
+    assert "error" in response.json.keys()
+    assert "Invalid image" == response.json["error"]
