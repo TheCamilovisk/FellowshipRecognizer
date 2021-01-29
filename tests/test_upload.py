@@ -27,3 +27,4 @@ def test_upload_txt_ext(cli):
     response = cli.post("/upload", data=data)
     assert response.status_code == 400
     assert "error" in response.json.keys()
+    assert "Invalid image" == response.json["error"]
