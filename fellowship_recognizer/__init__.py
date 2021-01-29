@@ -42,6 +42,6 @@ def create_app():
                 return jsonify({"error": "Invalid image"}), 400
 
             uploaded_file.save(path.join(app.config["UPLOAD_PATH"], filename))
-        return jsonify({"img_id": "filename"}), 201
+        return jsonify({"img_id": filename}), 201
 
     return app
