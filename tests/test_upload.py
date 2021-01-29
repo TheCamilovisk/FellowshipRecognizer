@@ -20,3 +20,10 @@ def test_upload_big_image(cli):
     assert response.status_code == 413
     assert "error" in response.json.keys()
     assert "File is too large" == response.json["error"]
+
+
+def test_upload_txt_ext(cli):
+    data = {"image": (open(join("samples", "thefellowship.jpg"), "rb"), "thefellowship.txt")}
+    response = cli.post("/upload", data=data)
+    assert response.status_code == 400
+    assert "error" in response.json.keys()
