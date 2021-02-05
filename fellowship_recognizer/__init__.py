@@ -44,4 +44,12 @@ def create_app():
             uploaded_file.save(path.join(app.config["UPLOAD_PATH"], filename))
         return jsonify({"img_id": filename}), 201
 
+    @app.route("/recognize/<string:img_id>", methods=["GET"])
+    def recognize_faces(img_id):
+        img_path = path.join(app.config["UPLOAD_PATH"], img_id)
+        if not path.isfile(img_path):
+            return {"error": "Image ID does not exists!"}, 400
+        
+        return {"img_id": img_id}, 200
+
     return app
